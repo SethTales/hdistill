@@ -13,10 +13,10 @@ pip install hdistill
 ## Usage
 
 ```python
-hdistill 'https://www.imdb.com/chart/top/?ref_=nv_mv_250' '//td[@class=\"titleColumn\"]/text() | //td[@class=\"titleColumn\"]//a/text() | //td[@class=\"titleColumn\"]//a/@title | //td[@class=\"titleColumn\"]//span[@class=\"secondaryInfo\"]/text()' 4 'Rank,Key People,Title,Year Released'
+hdistill 'https://www.imdb.com/chart/top/?ref_=nv_mv_250' '//td[@class=\"titleColumn\"]/text() | //td[@class=\"titleColumn\"]//a/text() | //td[@class=\"titleColumn\"]//a/@title | //td[@class=\"titleColumn\"]//span[@class=\"secondaryInfo\"]/text()' -t 'Rank,Key People,Title,Year Released' -o 'output'
 ```
 
-will output a list of the top 250 movies:
+will parse the HTML at the given URL with the given XPath expression, transform the output based on the keys specificed after the -t argument, and then write as JSON to the file specified by the -o argument.
 
 ```
 [   {   'Key People': 'Frank Darabont (dir.), Tim Robbins, Morgan Freeman',
@@ -42,6 +42,12 @@ will output a list of the top 250 movies:
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+For development purposes, run
+```
+python -m hdistill.main
+```
+from root of the repository to run the application.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

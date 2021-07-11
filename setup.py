@@ -7,7 +7,7 @@ long_description = 'Simple CLI tool used for exploring and parsing HTML document
   
 setup(
         name ='hdistill',
-        version ='0.1.7',
+        version ='1.0.0',
         author ='Seth Taylor',
         author_email ='seth.tales@gmail.com',
         url ='https://github.com/SethTales/hdistill',
