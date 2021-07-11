@@ -44,7 +44,7 @@ for raw output for more exploratory purposes, simply ommit the -t and -o argumen
 hdistill 'https://www.imdb.com/chart/top/?ref_=nv_mv_250' '//td[@class=\"titleColumn\"]/text() | //td[@class=\"titleColumn\"]//a/text() | //td[@class=\"titleColumn\"]//a/@title | //td[@class=\"titleColumn\"]//span[@class=\"secondaryInfo\"]/text()'
 ```
 
-which will output a raw list of the attributes and elements found by your XPath query:
+which will output to console a raw list of the attributes and elements found by your XPath query:
 
 ```
 [   '1.',
