@@ -4,7 +4,7 @@ from hdistill.pipeline.transformer import Transformer
 class TransformerTests(unittest.TestCase):
 
     def test_sanitizer_strips_whitespace_and_newlines(self):
-        transformer = Transformer(4, ['Rank', 'Key People', 'Title', 'Year Released'])
+        transformer = Transformer(['Rank', 'Key People', 'Title', 'Year Released'])
         actual_output = transformer.transform(input)
         self.assertEqual(expected_output, actual_output)
 

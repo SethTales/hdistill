@@ -2,9 +2,10 @@ from .adapters.http_client import HttpClient
 from .pipeline.html_parser import HtmlParser
 from .pipeline.sanitizer import Sanitizer
 from .pipeline.transformer import Transformer
-from .hdistill import HDistill
+from .command_handler import get_command_handler
 import pprint
 import argparse
+import sys
 
 class SplitArgs(argparse.Action):
     def __call__(self, parser, namespace, values, option_string=None):
@@ -12,24 +13,18 @@ class SplitArgs(argparse.Action):
 
 def main():
     args = parse_args()
-    process(args)
+    handler = get_command_handler(args)
+    handler.process(args.url, args.xpath)
 
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("url", help="the URL of a webpage")
     parser.add_argument("xpath", help="the XPath query to extract specific data from the source HTML")
-    parser.add_argument("set_size", help="used to transform a list of parsed HTML data into sublists of the given set_size", type=int)
-    parser.add_argument("keys", help="a comma separated list of keys used as labels for each element in a set", action=SplitArgs)
+    parser.add_argument("-t", "--transform", dest="keys", action=SplitArgs, type=str, default=None,
+                        help="a list of keys to map the parsed output to. Keys must be provided as a comma-separated string. The number of keys determines the size of the sub-lists that the raw parsed output is split into, before being formed into a map")
+    parser.add_argument("-o", "--output", dest="output", action="store", default=None,
+                        help="the destination file name for the output. If the file exists it will be overwritten. Output is in JSON and .json will be appended to the file name")
     return parser.parse_args()
 
-def process(args):
-    http_client = HttpClient()
-    html_parser = HtmlParser()
-    sanitizer = Sanitizer()
-    transformer = Transformer(
-        args.set_size,
-        args.keys)
-    hdistill = HDistill(http_client, html_parser, sanitizer, transformer)
-    distilled = hdistill.distill(args.url, args.xpath)
-    pp = pprint.PrettyPrinter(indent=4)
-    pp.pprint(distilled)
+if __name__ == "__main__":
+    main()

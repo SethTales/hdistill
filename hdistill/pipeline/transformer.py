@@ -1,7 +1,6 @@
 class Transformer():
 
-    def __init__(self, set_size: int, keys: []):
-        self._set_size = set_size
+    def __init__(self, keys: []):
         self._keys = keys
         self._transformed = []
 
@@ -16,4 +15,4 @@ class Transformer():
         return transformed
 
     def __split_sets_by_set_size(self, input: []) -> []:
-        return [input[x: x + self._set_size] for x in range(0, len(input), self._set_size)]
+        return [input[x: x + len(self._keys)] for x in range(0, len(input), len(self._keys))]
