@@ -4,7 +4,7 @@ HDistill is a Python CLI tool for exploring and parsing HTML
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install hdistill.
 
 ```bash
 pip install hdistill
