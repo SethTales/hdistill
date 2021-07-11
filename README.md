@@ -38,6 +38,29 @@ will parse the HTML at the given URL with the given XPath expression, transform 
     etc...
 ```
 
+for raw output for more exploratory purposes, simply ommit the -t and -o arguments:
+
+```python
+hdistill 'https://www.imdb.com/chart/top/?ref_=nv_mv_250' '//td[@class=\"titleColumn\"]/text() | //td[@class=\"titleColumn\"]//a/text() | //td[@class=\"titleColumn\"]//a/@title | //td[@class=\"titleColumn\"]//span[@class=\"secondaryInfo\"]/text()'
+```
+
+which will output a raw list of the attributes and elements found by your XPath query:
+
+```
+[   '1.',
+    'Frank Darabont (dir.), Tim Robbins, Morgan Freeman',
+    'The Shawshank Redemption',
+    '(1994)',
+    '2.',
+    'Francis Ford Coppola (dir.), Marlon Brando, Al Pacino',
+    'The Godfather',
+    '(1972)',
+    '3.',
+    'Francis Ford Coppola (dir.), Al Pacino, Robert De Niro',
+    'The Godfather: Part II',
+    '(1974)',
+```
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
