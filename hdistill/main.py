@@ -3,9 +3,7 @@ from .pipeline.html_parser import HtmlParser
 from .pipeline.sanitizer import Sanitizer
 from .pipeline.transformer import Transformer
 from .command_handler import get_command_handler
-import pprint
 import argparse
-import sys
 
 class SplitArgs(argparse.Action):
     def __call__(self, parser, namespace, values, option_string=None):
